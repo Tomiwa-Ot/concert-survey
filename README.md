@@ -15,7 +15,11 @@ Create concerts and load artist profiles from Spotify using MVC dynamic routing 
 ## Usage
 - Insert Spotify client secret and client id in the .env file
 - Update database configuration in the .env file
-- Execute the sql file
+- Execute the ```database.sql``` file
+```console
+Username: admin
+Password: password
+```
 
 ## Screenshots 
 ![Screenshot 2023-05-14 at 22-42-56 https __localhost](https://github.com/Tomiwa-Ot/concert-survey/assets/37912743/fc256cef-c955-4e08-857d-9918c31ddc99)
