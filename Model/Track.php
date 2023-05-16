@@ -136,14 +136,3 @@ class Track implements JsonSerializable
     }
 }
 
-// require_once __DIR__ . '/../Library/Database.php';
-// require_once __DIR__ . '/../Library/Env.php';
-// use Project\Library\Env;
-// use Project\Library\Database;
-// Env::load(__DIR__ . '/../.env');
-// // $a = new Track('Back to Back', 'https://i.scdn.co/image/ab6761610000e5eb4bd22c1711d22aa647a61097', 0, '#a12d4fc');
-// $b = json_encode([['title' => 'Back to Back', 'picture' => 'https://i.scdn.co/image/ab6761610000e5eb4bd22c1711d22aa647a61097', 'score' => 0, 'color' => '#a12d4fc']]);
-// $pdo = Database::getpdo();
-// $image = base64_encode(file_get_contents('https://i.scdn.co/image/ab6761610000e5eb4bd22c1711d22aa647a61097'));
-// $statement = $pdo->prepare("INSERT INTO back_for_everything(spotify_id, artist, picture, tracks) VALUES(?, ?, ?, ?)");
-// $statement->execute(['46SHBwWsqBkxI7EeeBEQG7', 'Kodak Black', $image, $b]);
