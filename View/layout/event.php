@@ -31,7 +31,7 @@
                                         </div>
                                         <div class="font-weight-bold">
                                             <div><?= $track->getTitle() ?></div>
-                                            <div class="small text-gray-500"><?= $track->getDuration() ?></div>
+                                            <div class="small text-gray-500"><?= sprintf("%02d", $track->getDuration()) ?></div>
                                         </div>
                                     </div>
                                     <br>
