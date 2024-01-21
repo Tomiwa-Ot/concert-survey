@@ -1,12 +1,15 @@
 <?php
 
-require_once __DIR__ . '/Library/Env.php';
-require_once __DIR__ . '/Library/Router.php';
-require_once __DIR__ . '/Library/Database.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 use Project\Library\Env;
 use Project\Library\Router;
 use Project\Library\Database;
+use Project\Controller\Admin;
+use Project\Controller\Contact;
+use Project\Controller\Event;
+use Project\Controller\Home;
+use Project\Controller\Faq;
 
 foreach (glob(__DIR__ . '/Controller/*.php') as $file) {
     if ($file === __DIR__ . '/Controller/BaseController.php') continue;

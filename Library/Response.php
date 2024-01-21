@@ -1,5 +1,7 @@
 <?php
 
+namespace Project\Library;
+
 /**
  * Render html view
  * 

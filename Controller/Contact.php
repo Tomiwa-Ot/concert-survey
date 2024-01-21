@@ -1,9 +1,10 @@
 <?php
 
-require_once __DIR__ . '/BaseController.php';
-require_once __DIR__ . '/../Library/CSRF.php';
+namespace Project\Controller;
 
 use Project\Library\CSRF;
+
+use function Project\Library\render;
 
 class Contact extends BaseController
 {
@@ -131,19 +132,19 @@ class Contact extends BaseController
     {
         $statement = $this->pdo->prepare("SELECT * FROM contact WHERE name=?");
         $statement->execute(['address']);
-        $data = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
         $this->address = $data[0]['value'];
         $this->addressId = $data[0]['id'];
 
         $statement = $this->pdo->prepare("SELECT * FROM contact WHERE name=?");
         $statement->execute(['phone']);
-        $data = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
         $this->phone = $data[0]['value'];
         $this->phoneId = $data[0]['id'];
 
         $statement = $this->pdo->prepare("SELECT * FROM contact WHERE name=?");
         $statement->execute(['email']);
-        $data = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
         $this->email = $data[0]['value'];
         $this->emailId = $data[0]['id'];
     }

@@ -1,17 +1,13 @@
 <?php
 
-require_once __DIR__ . '/../Model/Concert.php';
-require_once __DIR__ . '/../Model/Artist.php';
-require_once __DIR__ . '/../Model/Message.php';
-require_once __DIR__ . '/../Model/FrequentlyAskedQuestion.php';
-require_once __DIR__ . '/../Library/CSRF.php';
-require_once __DIR__ . '/BaseController.php';
+namespace Project\Controller;
 
-use Project\Model\Artist;
 use Project\Model\Concert;
 use Project\Model\Message;
 use Project\Library\CSRF;
 use Project\Model\FrequentlyAskedQuestion;
+
+use function Project\Library\render;
 
 class Admin extends BaseController
 {
@@ -59,7 +55,7 @@ class Admin extends BaseController
 
         $statement = $this->pdo->prepare("SELECT * FROM concerts WHERE active=?");
         $statement->execute([1]);
-        $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $rows = $statement->fetchAll(\PDO::FETCH_ASSOC);
 
         $activeConcerts = [];
         foreach ($rows as $row) {
@@ -68,7 +64,7 @@ class Admin extends BaseController
 
         $statement = $this->pdo->prepare("SELECT * FROM concerts WHERE active=?");
         $statement->execute([0]);
-        $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $rows = $statement->fetchAll(\PDO::FETCH_ASSOC);
 
         $inactiveConcerts = [];
         foreach ($rows as $row) {
@@ -97,7 +93,7 @@ class Admin extends BaseController
 
         $statement = $this->pdo->prepare("SELECT * FROM faq ORDER BY id DESC");
         $statement->execute();
-        $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $rows = $statement->fetchAll(\PDO::FETCH_ASSOC);
 
         $faq = [];
         foreach ($rows as $row) {
@@ -119,7 +115,7 @@ class Admin extends BaseController
 
         $statement = $this->pdo->prepare("SELECT * FROM messages ORDER BY id DESC");
         $statement->execute();
-        $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $rows = $statement->fetchAll(\PDO::FETCH_ASSOC);
 
         $messages = [];
         foreach ($rows as $row) {
@@ -159,7 +155,7 @@ class Admin extends BaseController
         $statement->execute([$_POST['name']]);
 
         if ($statement->rowCount() > 0) {
-            $row = $statement->fetchAll(PDO::FETCH_ASSOC);
+            $row = $statement->fetchAll(\PDO::FETCH_ASSOC);
             
             if (password_verify($_POST['password'], $row[0]['password'])) {
                 $_SESSION['admin'] = 'admin';

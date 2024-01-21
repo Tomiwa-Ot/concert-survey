@@ -1,9 +1,10 @@
 <?php
 
-require_once __DIR__ . '/../Model/Concert.php';
-require_once __DIR__ . '/BaseController.php';
+namespace Project\Controller;
 
 use Project\Model\Concert;
+
+use function Project\Library\render;
 
 class Home extends BaseController
 {
@@ -31,7 +32,7 @@ class Home extends BaseController
         $statement->execute([1]);
 
         $concerts = [];
-        $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $rows = $statement->fetchAll(\PDO::FETCH_ASSOC);
         foreach ($rows as $row) {
             $concerts[] = new Concert($row['title'], $row['active']);
         }

@@ -1,11 +1,11 @@
 <?php
 
-require_once __DIR__ . '/BaseController.php';
-require_once __DIR__ . '/../Model/FrequentlyAskedQuestion.php';
-require_once __DIR__ . '/../Library/CSRF.php';
+namespace Project\Controller;
 
 use Project\Library\CSRF;
 use Project\Model\FrequentlyAskedQuestion;
+
+use function Project\Library\render;
 
 class Faq extends BaseController
 {
@@ -21,7 +21,7 @@ class Faq extends BaseController
     {
         $statement = $this->pdo->prepare("SELECT * FROM faq");
         $statement->execute();
-        $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $rows = $statement->fetchAll(\PDO::FETCH_ASSOC);
 
         $faq = [];
         foreach ($rows as $row) {
@@ -72,7 +72,7 @@ class Faq extends BaseController
         $statement->execute([$_GET['id']]);
 
         if ($statement->rowCount() > 0) {
-            $row = $statement->fetchAll(PDO::FETCH_ASSOC);
+            $row = $statement->fetchAll(\PDO::FETCH_ASSOC);
             $faq = new FrequentlyAskedQuestion($row[0]['id'], $row[0]['question'], $row[0]['answer']);
 
             render('admin/edit-faq.php', ['title' => 'Edit FAQ', 'faq' => $faq, 'token' => CSRF::getInputField()]);

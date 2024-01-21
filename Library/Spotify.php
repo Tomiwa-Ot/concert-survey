@@ -2,12 +2,6 @@
 
 namespace Project\Library;
 
-require_once __DIR__ . '/../Model/Artist.php';
-require_once __DIR__ . '/../Model/Track.php';
-
-use Project\Model\Artist;
-use Project\Model\Track;
-
 /**
  * Spotify API wrapper
  */

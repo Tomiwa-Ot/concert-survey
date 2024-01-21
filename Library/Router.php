@@ -2,8 +2,6 @@
 
 namespace Project\Library;
 
-require_once __DIR__ . '/Response.php';
-
 class Router
 {
     /** @var array $uriList Valid URI(s) */

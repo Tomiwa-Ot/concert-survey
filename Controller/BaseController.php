@@ -1,10 +1,7 @@
 <?php
 
-require_once __DIR__ . '/../Library/Response.php';
-require_once __DIR__ . '/../Library/Spotify.php';
-require_once __DIR__ . '/../Library/Database.php';
+namespace Project\Controller;
 
-use Project\Library\Response;
 use Project\Library\Spotify;
 use Project\Library\Database;
 

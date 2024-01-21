@@ -13,6 +13,7 @@ Create concerts and load artist profiles from Spotify using MVC dynamic routing 
 - OOP design
 
 ## Usage
+- Run the command ```composer install```
 - Insert Spotify client secret and client id in the .env file
 - Update database configuration in the .env file
 - Execute the ```database.sql``` file

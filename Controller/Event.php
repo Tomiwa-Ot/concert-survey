@@ -1,15 +1,13 @@
 <?php
 
-require_once __DIR__ . '/../Library/CSRF.php';
-require_once __DIR__ . '/../Model/Artist.php';
-require_once __DIR__ . '/../Model/Track.php';
-require_once __DIR__ . '/../Model/Concert.php';
-require_once __DIR__ . '/BaseController.php';
+namespace Project\Controller;
 
 use Project\Library\CSRF;
 use Project\Model\Artist;
 use Project\Model\Concert;
 use Project\Model\Track;
+
+use function Project\Library\render;
 
 /**
  * Events view handler
@@ -62,7 +60,7 @@ class Event extends BaseController
                 $statement->execute([$_GET['artist']]);
 
                 if ($statement->rowCount() > 0) {
-                    $row = $statement->fetchAll(PDO::FETCH_ASSOC);
+                    $row = $statement->fetchAll(\PDO::FETCH_ASSOC);
                     $tracks = [];
                     foreach (json_decode($row[0]['tracks'], true) as $track) {
                         $tracks[] = new Track($track['title'], $track['spotify_id'], $track['picture'], $track['duration'], $track['score'], $track['color']);
@@ -112,7 +110,7 @@ class Event extends BaseController
 
         $statement = $this->pdo->prepare("SELECT * FROM " . str_replace("-", "_", $event));
         $statement->execute([]);
-        $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $rows = $statement->fetchAll(\PDO::FETCH_ASSOC);
 
         $artists = [];
         foreach ($rows as $row) {
@@ -199,7 +197,7 @@ class Event extends BaseController
             $statement->execute([$_POST['artist']]);
 
             if ($statement->rowCount() > 0) {
-                $row = $statement->fetchAll(PDO::FETCH_ASSOC);
+                $row = $statement->fetchAll(\PDO::FETCH_ASSOC);
                 $tracks = json_decode($row[0]['tracks'], true);
                 
                 foreach ($_POST['song'] as $song) {
@@ -230,7 +228,7 @@ class Event extends BaseController
         $statement->execute([$concertTitle]);
 
         if ($statement->rowCount() > 0) {
-            $row = $statement->fetchAll(PDO::FETCH_ASSOC);
+            $row = $statement->fetchAll(\PDO::FETCH_ASSOC);
             if ($row[0]['title'] === $concertTitle) {
                 $this->concert = new Concert($concertTitle, $row[0]['active']);
                 return true;
@@ -251,7 +249,7 @@ class Event extends BaseController
         $statement->execute([$_GET['artist']]);
 
         if ($statement->rowCount() > 0) {
-            $row = $statement->fetchAll(PDO::FETCH_ASSOC);
+            $row = $statement->fetchAll(\PDO::FETCH_ASSOC);
             $tracks = [];
             foreach (json_decode($row[0]['tracks'], true) as $track) {
                 $tracks[] = new Track($track['title'], $track['spotify_id'], $track['picture'], $track['duration'], $track['score'], $track['color']);
@@ -274,7 +272,7 @@ class Event extends BaseController
         $statement = $this->pdo->prepare("SELECT * FROM " . str_replace(' ', '_', $this->concert->getTitle()));
         $statement->execute([]);
 
-        $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $rows = $statement->fetchAll(\PDO::FETCH_ASSOC);
         $result = [];
 
         foreach ($rows as $row) {
@@ -360,7 +358,7 @@ class Event extends BaseController
             $statement->execute([$_POST['artist']]);
 
             if ($statement->rowCount() > 0) {
-                $row = $statement->fetchAll(PDO::FETCH_ASSOC);
+                $row = $statement->fetchAll(\PDO::FETCH_ASSOC);
                 $tracks = json_decode($row[0]['tracks']);
                 $tracks[] = [
                     "title" => $data['name'],
